@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from datetime import date, timedelta
 
-import optimization
+import optimization_module
 
 
 class TestPortfolioOptimization(unittest.TestCase):
@@ -56,8 +56,8 @@ class TestPortfolioOptimization(unittest.TestCase):
 
         return pd.DataFrame(data, index=index, columns=columns_names)
 
-    @patch('optimization.OptimalHoldings')
-    @patch('optimization.factor_betas_and_specific_return')
+    @patch('optimization_module.OptimalHoldings')
+    @patch('optimization_module.factor_betas_and_specific_return')
     def test_get_optimal_weights(self, mock_betas_and_specific_return, mock_optimal_holdings):        
     
         factors = ['F1', 'F2', 'F3', 'F4', 'F5']
@@ -99,7 +99,7 @@ class TestPortfolioOptimization(unittest.TestCase):
         print(fama_fac_and_return)
 
         # Call the function with the mocked data
-        result = optimization.get_optimal_weights(alpha_vector, fama_fac_and_return, factor_data)
+        result = optimization_module.get_optimal_weights(alpha_vector, fama_fac_and_return, factor_data)
 
         print("Result:")
         print(result)
